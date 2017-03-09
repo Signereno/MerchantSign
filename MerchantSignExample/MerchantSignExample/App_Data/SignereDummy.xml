@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Person> 
+  	<Name>Ola Normann</Name>
+  	<Street>Olaveien 99</Street>
+  	<Zip>9988</Zip>
+  	<City>Oslo</City>
+</Person>
