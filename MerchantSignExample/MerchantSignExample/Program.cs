@@ -25,9 +25,9 @@ namespace MerchantSignExample
         static void Main(string[] args)
         {
             //Insert your credentials here
-            var accountId = Guid.Parse("Enter your account Id here");
-            var oauthClientId = "Enter your oauth2 client id here";
-            var oauthSecret = "Enter your oauth2 secret here";
+            var accountId = Guid.Parse("9b10bc68-7700-4966-8d49-04e49e90eb8b");
+            var oauthClientId = "9b10bc68-7700-4966-8d49-04e49e90eb8b";
+            var oauthSecret = "IdbivrHZjkBJys8DNG/3fGRPsJg7UTgApUjRh3tIeCM=";
             var outPutFilePath1 = Path.Combine(Directory.GetCurrentDirectory(), "App_Data\\SignedTxtFile.sdo");
             var outPutFilePath2 = Path.Combine(Directory.GetCurrentDirectory(), "App_Data\\SignedXmlFile.sdo");
             
@@ -47,10 +47,10 @@ namespace MerchantSignExample
                  DataFormat = DataFormat.txt,
                  DataToSign = Convert.ToBase64String(fileData),
                  ExternalReference = "Some external reference",
-                 SigningFormat = SigningFormat.no_bankid_seid_sdo
+                 SigningFormat = SigningFormat.use_provider_setting
              };
 
-             Sign(signRequest, outPutFilePath1);
+            Sign(signRequest, outPutFilePath1);
 
 
 
@@ -77,6 +77,10 @@ namespace MerchantSignExample
 
             Sign(xmlSignRequest, outPutFilePath2);
             */
+            Console.ReadKey();
+
+            Console.WriteLine(Extensions.Serialize(GetAllTransactionsForThisOauthClient()));
+
             Console.ReadKey();
         }
 

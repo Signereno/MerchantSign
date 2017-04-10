@@ -34,15 +34,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IdentiSign.MerchantSign.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdentiSign.MerchantSign.Client.1.0.10\lib\net452\IdentiSign.MerchantSign.Client.dll</HintPath>
+      <HintPath>..\packages\IdentiSign.MerchantSign.Client.1.0.17\lib\net45\IdentiSign.MerchantSign.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IdentiSign.MerchantSign.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdentiSign.MerchantSign.Models.1.0.10\lib\net452\IdentiSign.MerchantSign.Models.dll</HintPath>
+      <HintPath>..\packages\IdentiSign.MerchantSign.Models.1.0.17\lib\net45\IdentiSign.MerchantSign.Models.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
