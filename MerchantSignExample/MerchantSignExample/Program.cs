@@ -3,6 +3,7 @@
 //                                                                      //
 //            - IdentiSign.MerchantSign.Client                          //
 //            - IdentiSign.MerchantSign.Models                          //
+//            - System.Net.Http                                         //
 //                                                                      //              
 //######################################################################//
 using System;
@@ -25,30 +26,30 @@ namespace MerchantSignExample
         static void Main(string[] args)
         {
             //Insert your credentials here
-            var accountId = Guid.Parse("9b10bc68-7700-4966-8d49-04e49e90eb8b");
-            var oauthClientId = "9b10bc68-7700-4966-8d49-04e49e90eb8b";
-            var oauthSecret = "IdbivrHZjkBJys8DNG/3fGRPsJg7UTgApUjRh3tIeCM=";
+            var accountId = Guid.Parse("Enter your account Id here");
+            var oauthClientId = "Enter your oauth2 client id here";
+            var oauthSecret = "Enter your oauth2 secret here";
             var outPutFilePath1 = Path.Combine(Directory.GetCurrentDirectory(), "App_Data\\SignedTxtFile.sdo");
             var outPutFilePath2 = Path.Combine(Directory.GetCurrentDirectory(), "App_Data\\SignedXmlFile.sdo");
-            
-            
+
+
             _merchantSignClient = new MerchantSignClient(accountId, oauthClientId, oauthSecret);
 
             //################################################################################################################//
             //                                        Sign text file                                                          //      
             //                                      --------------------                                                      //          
             //################################################################################################################//
-            
-             var fileData = File.ReadAllBytes("App_Data/FileToSign.txt");
 
-             Console.WriteLine("Signing txt file, please wait...");
-             var signRequest = new SignRequest()
-             {
-                 DataFormat = DataFormat.txt,
-                 DataToSign = Convert.ToBase64String(fileData),
-                 ExternalReference = "Some external reference",
-                 SigningFormat = SigningFormat.use_provider_setting
-             };
+            var fileData = File.ReadAllBytes("App_Data/FileToSign.txt");
+
+            Console.WriteLine("Signing txt file, please wait...");
+            var signRequest = new SignRequest()
+            {
+                DataFormat = DataFormat.txt,
+                DataToSign = Convert.ToBase64String(fileData),
+                ExternalReference = "Some external reference",
+                SigningFormat = SigningFormat.no_bankid_seid_sdo
+            };
 
             Sign(signRequest, outPutFilePath1);
 
@@ -64,7 +65,6 @@ namespace MerchantSignExample
             /*
             var xml = File.ReadAllBytes("App_Data/SignereDummy.xml");
             var xslt = File.ReadAllBytes("App_Data/SignereDummy.xslt");
-
             Console.WriteLine("Signing xml file, please wait...");
             var xmlSignRequest = new SignRequest()
             {
@@ -74,19 +74,14 @@ namespace MerchantSignExample
                 ExternalReference = "Some external reference",
                 SigningFormat = SigningFormat.no_bankid_seid_sdo
             };
-
             Sign(xmlSignRequest, outPutFilePath2);
             */
-            Console.ReadKey();
-
-            Console.WriteLine(Extensions.Serialize(GetAllTransactionsForThisOauthClient()));
-
             Console.ReadKey();
         }
 
 
         private static void Sign(SignRequest request, string outputFilePath)
-        { 
+        {
             var result = _merchantSignClient.Sign(request, IsProduction);
             Console.WriteLine("Sign Result");
             Console.WriteLine("------------------------------------------------------------");
